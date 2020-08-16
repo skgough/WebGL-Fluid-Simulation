@@ -1,224 +1,124 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="Cache-Control" content="no-cache">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="mobile-web-app-capable" content="yes">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
 
-        <link rel="apple-touch-icon" href="logo.png">
-        <link rel="icon" href="logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
 
-        <title>WebGL Fluid Simulation</title>
-        <meta name="description" content="A WebGL fluid simulation that works in mobile browsers.">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="icon" href="logo.png">
 
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Webgl Fluid Simulation">
-        <meta property="og:description" content="A WebGL fluid simulation that works in mobile browsers.">
-        <meta property="og:url" content="https://paveldogreat.github.io/WebGL-Fluid-Simulation/">
-        <meta property="og:image" content="https://paveldogreat.github.io/WebGL-Fluid-Simulation/logo.png">
+    <title>WebGL Fluid Simulation</title>
+    <meta name="description" content="A WebGL fluid simulation that works in mobile browsers.">
 
-        <script type="text/javascript" src="dat.gui.min.js"></script>
-        <style>
-            @font-face {
-                font-family: 'iconfont';
-                src: url('iconfont.ttf') format('truetype');
-            }
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Webgl Fluid Simulation">
+    <meta property="og:description" content="A WebGL fluid simulation that works in mobile browsers.">
+    <meta property="og:url" content="https://skgough.github.io/WebGL-Fluid-Simulation/">
+    <meta property="og:image" content="https://skgough.github.io/WebGL-Fluid-Simulation/logo.png">
 
-            * {
-                user-select: none;
-            }
+    <link rel='stylesheet' href='style.css'>
+    <script src="script.js" defer></script>
+</head>
 
-            html, body {
-                overflow: hidden;
-                background-color: #000;
-            }
-
-            body {
-                margin: 0;
-                position: fixed;
-                width: 100%;
-                height: 100%;
-            }
-
-            canvas {
-                width: 100%;
-                height: 100%;
-            }
-
-            .dg {
-                opacity: 0.9;
-            }
-
-            .dg .property-name {
-                overflow: visible;
-            }
-
-            .bigFont {
-                font-size: 150%;
-                color: #8C8C8C;
-            }
-
-            .cr.function.appBigFont {
-                font-size: 150%;
-                line-height: 27px;
-                color: #A5F8D3;
-                background-color: #023C40;
-            }
-
-            .cr.function.appBigFont .property-name {
-                float: none;
-            }
-
-            .cr.function.appBigFont .icon {
-                position: sticky;
-                bottom: 27px;
-            }
-
-            .icon {
-                font-family: 'iconfont';
-                font-size: 130%;
-                float: right;
-            }
-
-            .twitter:before {
-                content: 'a';
-            }
-
-            .github:before {
-                content: 'b';
-            }
-
-            .app:before {
-                content: 'c';
-            }
-
-            .discord:before {
-                content: 'd';
-            }
-
-            .promo {
-                display: none;
-                /* display: table; */
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 1;
-                overflow: auto;
-                color: lightblue;
-                background-color: rgba(0,0,0,0.4);
-                animation: promo-appear-animation 0.35s ease-out;
-            }
-
-            .promo-middle {
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .promo-content {
-                width: 80vw;
-                height: 80vh;
-                max-width: 80vh;
-                max-height: 80vw;
-                margin: auto;
-                padding: 0;
-                font-size: 2.8vmax;
-                font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-                text-align: center;
-                background-image: url("promo_back.png");
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                border-radius: 15px;
-                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-            }
-
-            .promo-header {
-                height: 10%;
-                padding: 2px 16px;
-            }
-
-            .promo-close {
-                width: 10%;
-                height: 100%;
-                text-align: left;
-                float: left;
-                font-size: 1.3em;
-                /* transition: 0.2s; */
-            }
-
-            .promo-close:hover {
-                /* transform: scale(1.25); */
-                cursor: pointer;
-            }
-
-            .promo-body {
-                padding: 8px 16px 16px 16px;
-                margin: auto;
-            }
-
-            .promo-body p {
-                margin-top: 0;
-                mix-blend-mode: color-dodge;
-            }
-
-            .link {
-                width: 100%;
-                display: inline-block;
-            }
-
-            .link img {
-                width: 100%;
-            }
-
-            @keyframes promo-appear-animation {
-                0% {
-                    transform: scale(2.0);
-                    opacity: 0;
-                }
-                100% {
-                    transform: scale(1.0);
-                    opacity: 1;
-                }
-            }
-        </style>
-        <script>
-            window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-            ga('create', 'UA-105392568-1', 'auto');
-            ga('send', 'pageview');
-        </script>
-        <script async src="https://www.google-analytics.com/analytics.js"></script>
-    </head>
-    <body>
-        <canvas></canvas>
-
-        <!-- Mother of God, pls forgive me -->
-        <div class="promo">
-            <div class="promo-middle">
-                <div class="promo-content">
-                    <div class="promo-header">
-                        <span class="promo-close">&times;</span>
-                    </div>
-                    <div class="promo-body">
-                        <p>Try Fluid Simulation app!</p>
-                        <div class="links-container">
-                            <a class="link" id="apple_link" target="_blank">
-                                <img class="link-img" alt="Download on the App Store" src="app_badge.png"/>
-                            </a>
-                            <a class="link" id="google_link" target="_blank">
-                                <img class="link-img" alt="Get it on Google Play" src="gp_badge.png"/>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+<body>
+    <canvas></canvas>
+    <div class='settings'>
+        <form>
+            <div>
+                <label for='DYE_RESOLUTION'>Visual quality:</label>
+                <select id='DYE_RESOLUTION' onchange='updateConfig(this)'>
+                    <option value='128'>Very low</option>
+                    <option value='256'>Low</option>
+                    <option value='512' selected>Medium</option>
+                    <option value='1024'>High</option>
+                </select>
             </div>
-        </div>
+            <div>
+                <label for='SIM_RESOLUTION'>Simulation quality:</label>
+                <select id='SIM_RESOLUTION' onchange='updateConfig(this)'>
+                    <option value=32>Very low</option>
+                    <option value=64>Low</option>
+                    <option value=128 selected>Medium</option>
+                    <option value=256>High</option>
+                </select>
+            </div>
+            <div>
+                <label for='DENSITY_DISSIPATION'>Density dissipation: <span >1</span></label>
+                <input id='DENSITY_DISSIPATION' 
+                       oninput='updateDisplay(this)' 
+                       onchange='updateConfig(this)' 
+                       type='range' 
+                       min=0 
+                       max=4 
+                       step=0.1 
+                       value=1>
+            </div>
+            <div>
+                <label for='VELOCITY_DISSIPATION'>Velocity dissipation: <span >0.2</span></label>
+                <input id='VELOCITY_DISSIPATION' 
+                       oninput='updateDisplay(this)' 
+                       onchange='updateConfig(this)' 
+                       type='range' 
+                       min=0 
+                       max=4 
+                       step=0.1 
+                       value=0.2>
+            </div>
+            <div>
+                <label for='PRESSURE'>Pressure: <span >0.8</span></label>
+                <input id='PRESSURE' 
+                       oninput='updateDisplay(this)' 
+                       onchange='updateConfig(this)' 
+                       type='range' 
+                       min='0' 
+                       max='1' 
+                       step='0.01' 
+                       value=0.8>
+            </div>
+            <div>
+                <label for='CURL'>Vorticity: <span >30</span></label>
+                <input id='CURL' 
+                       oninput='updateDisplay(this)' 
+                       onchange='updateConfig(this)' 
+                       type='range' 
+                       min=0 
+                       max=50 
+                       step=1 
+                       value=30>
+            </div>
+            <div>
+                <label for='SPLAT_RADIUS'>Splat radius: <span >0.25</span></label>
+                <input id='SPLAT_RADIUS' 
+                       oninput='updateDisplay(this)' 
+                       onchange='updateConfig(this)' 
+                       type='range' 
+                       min=0.01 
+                       max=1 
+                       step=0.01 
+                       value=0.25>
+            </div>
+            <div>
+                <input id='COLORFUL' 
+                       oninput='updateConfig(this)' 
+                       type='checkbox' 
+                       checked>
+                 <label for='COLORFUL'>Colorful</label>
+            </div>
+        </form>
+        <button onclick='toggle()'>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                    d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+            </svg>
+            <span>Settings</span>
+        </button>
+    </div>
+</body>
 
-        <script src="./script.js"></script>
-    </body>
 </html>

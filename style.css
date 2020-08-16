@@ -1,0 +1,145 @@
+html,
+body {
+    user-select: none;
+    overflow: hidden;
+    background-color: #000;
+    font: 16px sans-serif;
+}
+
+body {
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.settings {
+    position: fixed;
+    bottom: 8px;
+    left: 8px;
+pointer-events: none;
+}
+
+
+.settings>form {
+    background: white;
+    border-radius: 11px;
+    padding: 1px 20px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(10px) scale(0.975);
+    transition: .2s opacity, .2s transform;
+
+}
+
+.settings.visible>form {
+    pointer-events: all;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.settings>form>div {
+    margin: 15px 0;
+}
+
+.settings>form select {
+    font-size: 16px;
+    border: 3px solid rgb(0, 117, 255);
+    background: white;
+    border-radius: calc(25.5px/2);
+    padding: 0 4px;
+}
+
+.settings>form select:focus {
+    outline: none;
+}
+
+.settings>form input[type=range] {
+    display: block;
+    width: 100%;
+}
+
+.settings>form input[type=checkbox] {
+    transform: scale(1.5);
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.settings>button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    pointer-events: all;
+    appearance: none;
+    display: flex;
+    padding: 4px 8px 4px 4px;
+    border: 0;
+    background: white;
+    border-radius: 22px;
+}
+
+.settings>button:focus {
+    outline: none;
+}
+
+.settings>button>svg {
+    height: 32px;
+    fill: rgb(0, 117, 255);
+}
+
+.settings>button>span {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 32px;
+    margin: 0 4.5px;
+}
+input[type=range] {
+  width: 100%;
+  margin: 8px 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  background: #e6e6f0;
+  border: 1px solid #b4b4c8;
+  border-radius: 4px;
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  margin-top: -9px;
+  width: 24px;
+  height: 24px;
+  background: #0075ff;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #e6e6f0;
+}
+input[type=range]::-moz-range-track {
+  background: #e6e6f0;
+  border: 1px solid #b4b4c8;
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: #0075ff;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+}
