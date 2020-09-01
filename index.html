@@ -32,21 +32,21 @@
         <form>
             <div>
                 <label for='DYE_RESOLUTION'>Visual quality:</label>
-                <select id='DYE_RESOLUTION' onchange='updateConfig(this)'>
-                    <option value='128'>Very low</option>
-                    <option value='256'>Low</option>
-                    <option value='512' selected>Medium</option>
-                    <option value='1024'>High</option>
-                </select>
+                <scroll-select id='DYE_RESOLUTION' onchange='updateConfig(this)'>
+                    <scroll-option value='128'>Very low</scroll-option>
+                    <scroll-option value='256'>Low</scroll-option>
+                    <scroll-option value='512' selected>Medium</scroll-option>
+                    <scroll-option value='1024'>High</scroll-option>
+                </scroll-select>
             </div>
             <div>
                 <label for='SIM_RESOLUTION'>Simulation quality:</label>
-                <select id='SIM_RESOLUTION' onchange='updateConfig(this)'>
-                    <option value=32>Very low</option>
-                    <option value=64>Low</option>
-                    <option value=128 selected>Medium</option>
-                    <option value=256>High</option>
-                </select>
+                <scroll-select id='SIM_RESOLUTION' onchange='updateConfig(this)'>
+                    <scroll-option value=32>Very low</scroll-option>
+                    <scroll-option value=64>Low</scroll-option>
+                    <scroll-option value=128 selected>Medium</scroll-option>
+                    <scroll-option value=256>High</scroll-option>
+                </scroll-select>
             </div>
             <div>
                 <label for='DENSITY_DISSIPATION'>Density dissipation: <span >1</span></label>
@@ -104,11 +104,16 @@
                        value=0.25>
             </div>
             <div>
-                <input id='COLORFUL' 
-                       oninput='updateConfig(this)' 
-                       type='checkbox' 
-                       checked>
-                 <label for='COLORFUL'>Colorful</label>
+                <div>
+                    <input id='COLORFUL' 
+                           oninput='updateConfig(this)' 
+                           type='checkbox' 
+                           checked>
+                    <svg class="unchecked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" ><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+                    <svg class="checked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    <label for='COLORFUL'>Colorful</label>
+                </div>
+                <button type=button class='reset' onclick='resetSim()'>Reset</button>
             </div>
         </form>
         <button onclick='toggle()'>

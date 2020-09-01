@@ -60,6 +60,18 @@ function updateConfig(element) {
 function updateDisplay(element) {
     document.querySelector(`[for=${element.id}] > span`).innerText = element.value;
 }
+function resetSim() {
+    config = JSON.parse(JSON.stringify(oreganoConfig));
+    initFramebuffers();
+    let inputs = document.querySelectorAll('[onchange]');
+        inputs.forEach(element => {
+            element.value = config[element.id];
+        });
+    let hasDisplay= document.querySelectorAll("[oninput='updateDisplay(this)']");
+        hasDisplay.forEach(element => updateDisplay(element));
+    let checkbox = document.querySelector('[type=checkbox]');
+        checkbox.checked = config[checkbox.id];
+}
 
 // Simulation section
 const canvas = document.getElementsByTagName('canvas')[0];
@@ -92,6 +104,7 @@ let config = {
     SUNRAYS_RESOLUTION: 196,
     SUNRAYS_WEIGHT: 1.0
 }
+let oreganoConfig = JSON.parse(JSON.stringify(config));
 
 function pointerPrototype () {
     this.id = -1;
@@ -1068,7 +1081,7 @@ function updateKeywords () {
 
 updateKeywords();
 initFramebuffers();
-multipleSplats(parseInt(Math.random() * 20) + 5);
+//multipleSplats(parseInt(Math.random() * 20) + 5);
 
 let lastUpdateTime = Date.now();
 let colorUpdateTimer = 0.0;
