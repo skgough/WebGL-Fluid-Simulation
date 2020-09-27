@@ -1,0 +1,44 @@
+scroll-select {
+    display: inline-block;
+    font: bold 1em/1.5 sans-serif;
+    background: white;
+    max-height: 1.5em;
+    padding: 0 .5em;
+    border-radius: .75em;
+    box-shadow: 0 0 0 2px rgb(0, 117, 255);
+    transition: .2s border-radius, .2s max-height;
+  }
+  scroll-select[open] {
+    max-height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    border-radius: .375em;
+  }
+  
+  scroll-option {
+    display: none;
+  }
+  scroll-option[selected],
+  scroll-option[prompt] {
+    display: inline-block;
+  }
+  scroll-select[open] > scroll-option[prompt],
+  scroll-option[selected] ~ scroll-option[prompt] {
+    display: none;
+  }
+  
+  scroll-select[open] > scroll-option {
+    display: block;
+    padding: 0 .5em;
+  }
+  scroll-select[open] > scroll-option:first-child,
+  scroll-select[open] > scroll-option[prompt] ~ scroll-option:nth-child(2) {
+    margin-top: .375em;
+  }
+  scroll-select[open] > scroll-option:last-child {
+    margin-bottom: .375em;
+  }
+  
+  scroll-select[open] > scroll-option:hover {
+    background-color: rgba(0,0,0,0.15);
+  }

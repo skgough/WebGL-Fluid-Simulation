@@ -28,25 +28,25 @@
 
 <body>
     <canvas></canvas>
-    <div class='settings'>
+    <div class='settings visible'>
         <form>
             <div>
                 <label for='DYE_RESOLUTION'>Visual quality:</label>
-                <scroll-select id='DYE_RESOLUTION' onchange='updateConfig(this)'>
-                    <scroll-option value='128'>Very low</scroll-option>
-                    <scroll-option value='256'>Low</scroll-option>
-                    <scroll-option value='512' selected>Medium</scroll-option>
-                    <scroll-option value='1024'>High</scroll-option>
-                </scroll-select>
+                <select id='DYE_RESOLUTION' onchange='updateConfig(this)'>
+                    <option value='128'>Very low</option>
+                    <option value='256'>Low</option>
+                    <option value='512' selected>Medium</option>
+                    <option value='1024'>High</option>
+                </select>
             </div>
             <div>
                 <label for='SIM_RESOLUTION'>Simulation quality:</label>
-                <scroll-select id='SIM_RESOLUTION' onchange='updateConfig(this)'>
-                    <scroll-option value=32>Very low</scroll-option>
-                    <scroll-option value=64>Low</scroll-option>
-                    <scroll-option value=128 selected>Medium</scroll-option>
-                    <scroll-option value=256>High</scroll-option>
-                </scroll-select>
+                <select id='SIM_RESOLUTION' onchange='updateConfig(this)'>
+                    <option value=32>Very low</option>
+                    <option value=64>Low</option>
+                    <option value=128 selected>Medium</option>
+                    <option value=256>High</option>
+                </select>
             </div>
             <div>
                 <label for='DENSITY_DISSIPATION'>Density dissipation: <span >1</span></label>
