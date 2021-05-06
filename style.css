@@ -82,7 +82,8 @@ input[type=checkbox] ~ label {
 }
 
 input[type=checkbox] ~ svg {
-  fill: rgb(0, 117, 255)
+  fill: rgb(0, 117, 255);
+  display: none;
 }
 
 :checked ~ svg.checked,
